@@ -10,8 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_15_144129) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_15_152404) do
 # Could not dump table "cifs" because of following StandardError
+#   Unknown type 'uuid' for column 'id'
+
+# Could not dump table "users" because of following StandardError
 #   Unknown type 'uuid' for column 'id'
 
 end

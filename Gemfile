@@ -70,3 +70,7 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+# plugin
+gem 'devise'
+gem 'uuid_v6'

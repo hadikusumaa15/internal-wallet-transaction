@@ -16,17 +16,23 @@
     <%= form.text_field :amount %>
   </div>
 
+  <div class="col-md-12" style="padding:5px"> </div>
+
   <div>
     <%= form.label :remark, style: "display: block" %>
     <%= form.text_field :remark %>
   </div>
+
+  <div class="col-md-12" style="padding:5px"> </div>
 
   <div>
     <%= form.label :receiver_user_id, style: "display: block" %>
     <%= form.collection_select :receiver_user_id, @users, :id, :email %>
   </div>
 
+  <div class="col-md-12" style="padding:5px"> </div>
+
   <div>
-    <%= form.submit %>
+    <%= form.submit 'Submit Transaction' %>
   </div>
 <% end %>

@@ -1,9 +1,19 @@
 class User < ApplicationRecord
   before_create -> { set_uuid(self) }
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  after_create :add_demo_balance
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :sender_user, class_name: 'Wallet', foreign_key: 'sender_user_id', dependent: :nullify
-  has_many :receiver_user, class_name: 'Wallet', foreign_key: 'receiver_user_id', dependent: :nullify
+  belongs_to :role, optional: true
+  belongs_to :cif, optional: true
+  has_many :credits, class_name: 'Wallet', foreign_key: 'sender_user_id', dependent: :destroy
+  has_many :debits, class_name: 'Wallet', foreign_key: 'receiver_user_id', dependent: :destroy
+
+  def check_balance
+    self.debits.pluck(:amount).compact.sum - self.credits.pluck(:amount).compact.sum
+  end
+
+  def add_demo_balance
+    demo_balance = Wallet.new(amount: 1_000_000, remark: 'demo_balance', receiver_user_id: self.id)
+    demo_balance.save
+  end
 end

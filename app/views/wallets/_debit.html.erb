@@ -1,0 +1,17 @@
+<div id="<%= dom_id debit %>">
+  <p>
+    <strong>Amount:</strong>
+    <%= debit.amount %>
+  </p>
+
+  <p>
+    <strong>Remark:</strong>
+    <%= debit.remark %>
+  </p>
+
+  <p>
+    <strong>Sender user:</strong>
+    <%= debit.sender_user&.email %>
+  </p>
+
+</div>

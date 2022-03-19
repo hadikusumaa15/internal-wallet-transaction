@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title
+      | Repo
+    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_importmap_tags
+    - if user_signed_in?
+      .col-md-12
+        strong.pull-right
+          = "Logged in as " + current_user.email
+      .col-md-12
+        = button_to 'Edit profile', edit_user_registration_path, method: 'get', class: 'btn-primary pull-right'
+      .col-md-12
+        = button_to 'Logout', destroy_user_session_path, method: 'delete', class: 'btn-primary pull-right'
+      .col-md-12
+    - else
+      .col-md-12
+        = button_to 'Login', new_user_session_path, class: 'btn-primary pull-right'
+  body
+    = yield

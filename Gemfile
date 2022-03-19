@@ -76,3 +76,8 @@ end
 # plugin
 gem 'devise'
 gem 'uuid_v6'
+gem 'bootstrap-sass'
+gem 'sassc-rails'
+gem 'sass-rails'
+gem 'jquery-rails'
+gem "slim-rails"

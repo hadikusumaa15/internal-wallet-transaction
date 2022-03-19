@@ -5,7 +5,5 @@ class CreateRoles < ActiveRecord::Migration[7.0]
       t.string :description
       t.timestamps
     end
-
-    add_reference :users, :role, foreign_key: true
   end
 end

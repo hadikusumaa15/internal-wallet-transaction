@@ -1,0 +1,45 @@
+<p style="color: green"><%= notice %></p>
+
+<div class='col-md-12'>
+  <%= button_to "New Transaction", new_wallet_path, method: :get, class: 'btn-primary pull-left' %>
+</div>
+
+<div class='col-md-12'>
+  <h2>
+    Your Balance:
+    <%= @balance %>
+  </h2>
+</div>
+
+<div class='col-md-12'>
+  <h2>Transaction List</h2>
+</div>
+
+<div class='col-md-12'>
+  <h2>Credits</h1>
+  <div id="credits">
+    <% @credits.each do |credit| %>
+      <div class='col-md-3'>
+        <%= render credit %>
+        <p>
+          <%= link_to "Show this transaction", credit %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<div class='col-md-12'>
+  <h2>Debits</h1>
+  <div id="debits">
+    <% @debits.each do |debit| %>
+      <div class='col-md-3'>
+        <%= render debit %>
+        <p>
+          <%= link_to "Show this transaction", debit %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -12,7 +12,7 @@ class WalletsTest < ApplicationSystemTestCase
 
   test "should create wallet" do
     visit wallets_url
-    click_on "New wallet"
+    click_on "New transaction"
 
     fill_in "Amount", with: @wallet.amount
     fill_in "Receiver user", with: @wallet.receiver_user_id

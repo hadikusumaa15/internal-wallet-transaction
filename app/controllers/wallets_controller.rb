@@ -1,6 +1,7 @@
 class WalletsController < ApplicationController
-  before_action :set_wallet, only: %i[ show ]
   before_action :authenticate_user!
+  before_action :redirect_non_user
+  before_action :set_wallet, only: %i[ show ]
   before_action :set_user_list, only: %i[ new create ]
   before_action :get_transactions, only: %i[ index ]
 
@@ -43,7 +44,8 @@ class WalletsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_wallet
-      @wallet = Wallet.find(params[:id])
+      @wallet = current_user.credits.find_by(id: params[:id])
+      @wallet = current_user.debits.find_by(id: params[:id]) if @wallet.blank?
     end
 
     # Only allow a list of trusted parameters through.
@@ -56,8 +58,8 @@ class WalletsController < ApplicationController
     end
 
     def get_transactions
-      @credits = current_user.credits.order(:created_at, :desc)
-      @debits = current_user.debits.order(:created_at, :desc)
+      @credits = current_user.credits.order(:created_at)
+      @debits = current_user.debits.order(:created_at)
       @balance = current_user.check_balance
     end
 end

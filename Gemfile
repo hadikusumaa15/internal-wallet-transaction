@@ -41,3 +41,4 @@ gem 'sassc-rails'
 gem 'sass-rails'
 gem 'jquery-rails'
 gem "slim-rails"
+gem 'jquery-rails'

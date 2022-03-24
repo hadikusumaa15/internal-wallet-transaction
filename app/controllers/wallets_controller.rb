@@ -7,7 +7,10 @@ class WalletsController < ApplicationController
 
   # GET /wallets or /wallets.json
   def index
-    
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @credits.as_json }
+    end
   end
 
   # GET /wallets/1 or /wallets/1.json

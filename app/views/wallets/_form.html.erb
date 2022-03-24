@@ -12,8 +12,11 @@
   <% end %>
 
   <div>
-    <%= form.label :amount, style: "display: block" %>
-    <%= form.text_field :amount %>
+    <label style="display: block" for="wallet_amount">
+      Amount <t style="color:red;">*</t>
+    </label>
+      
+    <%= form.text_field :amount, required: true %>
   </div>
 
   <div class="col-md-12" style="padding:5px"> </div>
@@ -26,8 +29,11 @@
   <div class="col-md-12" style="padding:5px"> </div>
 
   <div>
-    <%= form.label :receiver_user_id, style: "display: block" %>
-    <%= form.collection_select :receiver_user_id, @users, :id, :email %>
+    <label style="display: block" for="wallet_amount">
+      Receiver User <t style="color:red;">*</t>
+    </label>
+
+    <%= form.collection_select :receiver_user_id, @users, :id, :email, required: true %>
   </div>
 
   <div class="col-md-12" style="padding:5px"> </div>
@@ -36,3 +42,7 @@
     <%= form.submit 'Submit Transaction' %>
   </div>
 <% end %>
+
+<script>
+  $(document).on("input", "#wallet_amount", function() {this.value = this.value.replace(/\D/g,'');});
+</script>

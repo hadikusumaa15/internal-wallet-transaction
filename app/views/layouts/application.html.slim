@@ -8,6 +8,7 @@ html
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
+
     - if user_signed_in?
       .col-md-12
         strong.pull-right
@@ -21,4 +22,5 @@ html
       .col-md-12
         = button_to 'Login', new_user_session_path, class: 'btn-primary pull-right'
   body
+    script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"
     = yield

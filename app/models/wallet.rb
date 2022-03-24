@@ -2,6 +2,7 @@ class Wallet < ApplicationRecord
   before_create -> { set_uuid(self) }
   validates :amount, presence: true
   validate :sufficent_balance
+  validate :positive_amount
 
   belongs_to :sender_user, :class_name => 'User', dependent: :destroy, optional: true
   belongs_to :receiver_user, :class_name => 'User', dependent: :destroy, optional: true
@@ -12,5 +13,11 @@ class Wallet < ApplicationRecord
     if self.amount.to_f > self.sender_user.check_balance.to_f
       errors.add(:amount, "Balance is not enough!")
     end
+  end
+
+  def positive_amount
+    return if self.amount.to_f > 0
+    
+    errors.add(:amount, "cannot be 0 or less and must be numeric")
   end
 end
